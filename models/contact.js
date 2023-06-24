@@ -15,10 +15,15 @@ const contactSchema = new Schema(
     },
     phone: {
       type: String,
+      match: phoneRegexp,
     },
     favorite: {
       type: Boolean,
       default: false,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
     },
   },
   { versionKey: false, timestamps: true }
@@ -26,9 +31,7 @@ const contactSchema = new Schema(
 
 const addSchema = Joi.object({
   name: Joi.string().min(3).required(),
-  email: Joi.string()
-    .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
-    .required(),
+  email: Joi.string().email().required(),
   phone: Joi.string()
     .pattern(phoneRegexp)
     .messages({
