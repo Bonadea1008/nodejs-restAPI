@@ -18,9 +18,3 @@ mongoose
     console.log(error.message);
     process.exit(1);
   });
-
-// mongoose.connect(process.env.DB_HOST, {
-//   useNewUrlParser: true,
-//   useCreateIndex: true,
-//   useUnifiedTopology: true,
-// });
